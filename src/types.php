@@ -67,6 +67,23 @@ final class WPGraphQL_MetaBox_Types
                     'type'          => 'String',
                     'description'   => __('Single Image source set', 'wpgraphql-metabox'),
                 ],
+                'sizes'  => [
+                    'type'        => [
+                        'list_of' => 'MediaSize',
+                    ],
+                    'description' => __( 'The available sizes of the mediaItem', 'wp-graphql' ),
+                    'resolve'     => function ( $media_details, $args, $context, $info ) {
+                        if ( ! empty( $media_details['sizes'] ) ) {
+                            foreach ( $media_details['sizes'] as $size_name => $size ) {
+                                $size['ID']   = $media_details['ID'];
+                                $size['name'] = $size_name;
+                                $sizes[]      = $size;
+                            }
+                        }
+
+                        return ! empty( $sizes ) ? $sizes : null;
+                    },
+                ],
             ],
         ]);
     }
