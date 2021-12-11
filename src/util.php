@@ -132,6 +132,7 @@ final class WPGraphQL_MetaBox_Util
                     return self::resolve_field($field, self::get_resolver($type));
                 };
             case 'single_image':
+            case 'image_advanced':
                 return function ($node, $args) use ($field_id, $meta_args, $type) {
                     $size = !isset($args['size']) ? 'thumbnail' : $args['size'];
                     $merged_args = array_merge($meta_args, ['size' => $size]);
@@ -267,6 +268,7 @@ final class WPGraphQL_MetaBox_Util
             case 'url':
             case 'wysiwyg':
             case 'single_image':
+            case 'image_advanced':
                 return self::resolve_nullable_field();
             default:
                 return function () {
@@ -316,7 +318,6 @@ final class WPGraphQL_MetaBox_Util
             case 'file_upload':
             case 'hidden':
             case 'image':
-            case 'image_advanced':
             case 'image_select':
             case 'image_upload':
             case 'map':
@@ -370,6 +371,7 @@ final class WPGraphQL_MetaBox_Util
             case 'range':
                 return 'Float';
             case 'single_image':
+            case 'image_advanced':
                 return 'MBSingleImage';
             case 'user':
                 return 'User';
