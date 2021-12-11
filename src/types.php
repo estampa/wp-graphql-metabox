@@ -23,6 +23,13 @@ final class WPGraphQL_MetaBox_Types
         register_graphql_object_type('MBSingleImage', [
             'description'   => __('Meta Box single image type', 'wpgraphql-metabox'),
             'fields'        => [
+                'id'          => [
+                    'type'          => 'Int',
+                    'description'   => __('Single Image id', 'wpgraphql-metabox'),
+                    'resolve'       => function ( $image, $args, $context, $info ) {
+                        return $image['ID'];
+                    },
+                ],
                 'name'          => [
                     'type'          => 'String',
                     'description'   => __('Single Image name', 'wpgraphql-metabox'),
@@ -92,8 +99,8 @@ final class WPGraphQL_MetaBox_Types
             'fields'        => [
                 'id'          => [
                     'type'          => 'Int',
-                    'description'   => __('Single File name', 'wpgraphql-metabox'),
-                    'resolve'     => function ( $file, $args, $context, $info ) {
+                    'description'   => __('Single File id', 'wpgraphql-metabox'),
+                    'resolve'       => function ( $file, $args, $context, $info ) {
                         return $file['ID'];
                     },
                 ],
