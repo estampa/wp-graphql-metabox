@@ -134,8 +134,9 @@ final class WPGraphQL_MetaBox_Util
             case 'single_image':
             case 'image_advanced':
                 return function ($node, $args) use ($field_id, $meta_args, $type) {
-                    $size = !isset($args['size']) ? 'thumbnail' : $args['size'];
-                    $merged_args = array_merge($meta_args, ['size' => $size]);
+                    // $size = !isset($args['size']) ? 'full' : $args['size'];
+                    // $merged_args = array_merge($meta_args, ['size' => $size]);
+                    $merged_args = ['size' => 'full'];
                     $field = rwmb_meta($field_id, $merged_args, $node->ID);
 
                     return self::resolve_field($field, self::get_resolver($type));
