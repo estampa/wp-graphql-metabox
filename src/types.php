@@ -90,6 +90,13 @@ final class WPGraphQL_MetaBox_Types
         register_graphql_object_type('MBSingleFile', [
             'description'   => __('Meta Box single file type', 'wpgraphql-metabox'),
             'fields'        => [
+                'id'          => [
+                    'type'          => 'Int',
+                    'description'   => __('Single File name', 'wpgraphql-metabox'),
+                    'resolve'     => function ( $file, $args, $context, $info ) {
+                        return $file['ID'];
+                    },
+                ],
                 'name'          => [
                     'type'          => 'String',
                     'description'   => __('Single File name', 'wpgraphql-metabox'),
