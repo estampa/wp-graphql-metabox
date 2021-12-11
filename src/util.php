@@ -131,6 +131,13 @@ final class WPGraphQL_MetaBox_Util
                     $field = self::get_field($node, $field_id, $meta_args);
                     return self::resolve_field($field, self::get_resolver($type));
                 };
+            case 'file':
+            case 'file_advanced':
+                return function ($node, $args) use ($field_id, $meta_args, $type) {
+                    // TODO: replace by self::get_field
+                    $field = rwmb_meta($field_id, $meta_args, $node->ID);
+                    return self::resolve_field($field, self::get_resolver($type));
+                };
             case 'single_image':
             case 'image_advanced':
                 return function ($node, $args) use ($field_id, $meta_args, $type) {
@@ -270,6 +277,8 @@ final class WPGraphQL_MetaBox_Util
             case 'wysiwyg':
             case 'single_image':
             case 'image_advanced':
+            case 'file':
+            case 'file_advanced':
                 return self::resolve_nullable_field();
             default:
                 return function () {
@@ -313,8 +322,6 @@ final class WPGraphQL_MetaBox_Util
             case 'button':
             case 'button_group':
             case 'divider':
-            case 'file':
-            case 'file_advanced':
             case 'file_input':
             case 'file_upload':
             case 'hidden':
@@ -374,6 +381,9 @@ final class WPGraphQL_MetaBox_Util
             case 'single_image':
             case 'image_advanced':
                 return 'MBSingleImage';
+            case 'file':
+            case 'file_advanced':
+                return 'MBSingleFile';
             case 'user':
                 return 'User';
             case 'post':

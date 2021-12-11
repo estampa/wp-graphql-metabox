@@ -86,5 +86,27 @@ final class WPGraphQL_MetaBox_Types
                 ],
             ],
         ]);
+
+        register_graphql_object_type('MBSingleFile', [
+            'description'   => __('Meta Box single file type', 'wpgraphql-metabox'),
+            'fields'        => [
+                'name'          => [
+                    'type'          => 'String',
+                    'description'   => __('Single File name', 'wpgraphql-metabox'),
+                ],
+                'path'          => [
+                    'type'          => 'String',
+                    'description'   => __('Single File path', 'wpgraphql-metabox'),
+                ],
+                'url'           => [
+                    'type'          => 'String',
+                    'description'   => __('Single File URL', 'wpgraphql-metabox'),
+                ],
+                'title'         => [
+                    'type'          => 'String',
+                    'description'   => __('Single File title', 'wpgraphql-metabox'),
+                ],
+            ],
+        ]);
     }
 }
